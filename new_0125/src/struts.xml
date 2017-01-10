@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <!--设置使用Struts 2的simple模板-->
+    <constant name="struts.ui.theme" value="simple"/>
+    <!--设置Web应用默认编码字符集为gbk-->
+    <constant name="struts.i18n.encoding" value="gb2312"/>
+    <!--设置Web应用默认Locale为zh_CN-->
+    <constant name="struts.locale" value="zh_CN"/>
+    <!--定义一个名称为test的包，继承Struts 2的默认包-->
+    <package name="medicine" namespace="/" extends="struts-default">
+        <!-- 配置自定义登录验证拦截器-->
+        <interceptors>
+            <interceptor name="loginedInterceptor" class="myActions.LoginedInterceptor"/>
+        </interceptors>
+        <!-- 定义全局result -->
+        <global-results>
+            <result name="exception">globalException.jsp</result>
+            <result name="gologin">adminlogin.jsp</result>
+        </global-results>
+        <!-- 配置全局异常映射-->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="exception"/>
+        </global-exception-mappings>
+        <!--配置业务控制器的结果视图映射-->
+        <action name="adminLog" class="myActions.adminLog" >
+            <result name="success">admin_mains.html</result>
+            <result name="input">adminlogin.jsp</result>
+        </action>
+         
+         <action name="admin_mains_districtInfo" class="myActions.districtAdmin" method="admin_mains_districtInfo">
+            <result name="success">admin_mains_districtInfo.html</result>
+    
+        </action>       
+        
+        <action name="admin_medicineEditSave2" class="myActions.TopicAdmin" method="admin_medicineEditSave2">
+            <result name="success" type="chain">admin_medicineAdmin2</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_medicineEdit2</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+                <action name="admin_medicineEditSave" class="myActions.TopicAdmin" method="admin_medicineEditSave">
+            <result name="success" type="chain">admin_medicineAdmin</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_medicineEdit</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+       <action name="admin_districtEdit" class="myActions.districtAdmin" method="admin_districtEdit">           
+            <result name="success">admin_districtEdit.jsp</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_districtEdit</param>
+            </result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+               <action name="admin_districtEdit2" class="myActions.districtAdmin" method="admin_districtEdit2">           
+            <result name="success">admin_districtEdit2.jsp</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_districtEdit2</param>
+            </result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+       <action name="admin_districtEditSave" class="myActions.districtAdmin" method="admin_districtEditSave">           
+  <!--          
+     <param name="id">${district.getId()}</param>
+     <param name="M_name">${district.getM_name()}</param>
+     <param name="D_company">${district.getD_company()}</param>
+       <param name="D_district">${district.getD_district()}</param>     
+        <param name="D_form">${district.getD_form()}</param>
+         <param name="D_phone1">${district.getD_phone1()}</param>
+          <param name="D_email1">${district.getD_email1()}</param>
+          <param name="D_phone2">${district.getD_phone2()}</param>
+          <param name="D_email2">${district.getD_email2()}</param> -->
+       
+           
+            <result name="success">admin_districtAdmin.jsp</result>
+            <result name="input" >admin_districtAdmin.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="admin_districtEditSave2" class="myActions.districtAdmin" method="admin_districtEditSave2">           
+  <!--          
+     <param name="id">${district.getId()}</param>
+     <param name="M_name">${district.getM_name()}</param>
+     <param name="D_company">${district.getD_company()}</param>
+       <param name="D_district">${district.getD_district()}</param>     
+        <param name="D_form">${district.getD_form()}</param>
+         <param name="D_phone1">${district.getD_phone1()}</param>
+          <param name="D_email1">${district.getD_email1()}</param>
+          <param name="D_phone2">${district.getD_phone2()}</param>
+          <param name="D_email2">${district.getD_email2()}</param> -->
+       
+           
+            <result name="success">admin_districtAdmin.jsp</result>
+            <result name="input" >admin_districtAdmin.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+          <action name="admin_clientEditSave" class="myActions.clientAdmin" method="admin_clientEditSave">           
+            <result name="success" type="chain">admin_clientAdmin</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_clientEdit</param>
+            </result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+         <action name="admin_clientEdit" class="myActions.clientAdmin" method="admin_clientEdit">           
+            <result name="success"> admin_clientEdit.jsp</result>
+            
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+         <action name="admin_purchaseinfoEditSave" class="myActions.purchaseinfoAdmin" method="admin_purchaseinfoEditSave">
+               <result name="input" >admin_purchaseInfoAdd.jsp</result>
+              <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+           <action name="admin_districtinfoEditSave" class="myActions.districtinfoAdmin" method="admin_districtinfoEditSave">
+               <result name="input" >admin_districtInfoAdd.jsp</result>
+               
+             <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+       <action name="admin_managerAdmin" class="myActions.districtAdmin" method="admin_managerAdmin1">
+            <result name="success">admin_managerAdmin1.jsp</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_managerEdit1</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+                     
+       <action name="admin_managerEditSave1" class="myActions.districtAdmin" method="admin_managerEditSave1">
+            <result name="success" type="chain">admin_managerAdmin1</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_managerEdit1</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        <action name="admin_managerEditSave2" class="myActions.districtAdmin" method="admin_managerEditSave2">
+            <result name="success" type="chain">admin_managerAdmin2</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_managerEdit2</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        <action name="admin_managerEditSave3" class="myActions.districtAdmin" method="admin_managerEditSave3">
+            <result name="success" type="chain">admin_managerAdmin3</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_managerEdit3</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+                        <action name="admin_managerEditSave4" class="myActions.districtAdmin" method="admin_managerEditSave4">
+            <result name="success" type="chain">admin_managerAdmin4</result>
+            <result name="input" type="chain">
+                <param name="actionName">admin_managerEdit4</param>
+            </result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+         <action name="admin_queryAdd" class="myActions.queryAdmin" method="admin_queryAdd">
+            <result  >admin_queryAdd.jsp</result>
+             
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+         <action name="admin_queryEditSave" class="myActions.queryAdmin" method="admin_queryEditSave">
+           <result name="success" type="chain">admin_mains_districtInfo</result>
+             
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+           <action name="admin_departmentEditSave" class="myActions.departmentAdmin" method="admin_departmentEditSave">
+               <result name="input" >admin_clientAdd.jsp</result>
+          <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="admin_departmentadmin" class="myActions.districtAdmin" method="admin_departmentadmin">           
+            <result name="success">admin_departmentadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="admin_department" class="myActions.districtAdmin" method="admin_department">           
+            <result name="success">admin_department.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+      <action name="admin_othersadmin" class="myActions.districtAdmin" method="admin_othersadmin">           
+            <result name="success">admin_othersadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        <action name="admin_othersAdd" class="myActions.othersAdmin" method="admin_othersAdd">           
+            <result name="success">admin_othersAdd.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+
+           <action name="admin_othersEditSave" class="myActions.othersAdmin" method="admin_othersEditSave">
+           <result name="input" >admin_clientAdd.jsp</result>
+           <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+           <action name="admin_MedicineQueryEditSave" class="myActions.MedicineQueryAdmin" method="admin_MedicineQueryEditSave">
+            <result name="input" >admin_MedicineQueryAdd.jsp</result>
+              <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+             <action name="admin_complainEditSave" class="myActions.complainAdmin" method="admin_complainEditSave">
+               
+         <result  type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        <action name="admin_ComplainAdd" class="myActions.complainAdmin" method="admin_ComplainAdd">
+               
+         <result >admin_ComplainAdd.jsp</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+       
+        
+               <action name="admin_Complainadmin" class="myActions.districtAdmin" method="admin_Complainadmin">           
+            <result name="success">admin_Complainadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        
+        <action name="admin_Reactionadmin" class="myActions.districtAdmin" method="admin_Reactionadmin">           
+            <result name="success">admin_Reactionadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        <action name="admin_ReactionAdd" class="myActions.reactionAdmin" method="admin_ReactionAdd">
+               
+         <result >admin_ReactionAdd.jsp</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+           <action name="admin_reactionEditSave" class="myActions.reactionAdmin" method="admin_reactionEditSave">
+            <result name="input" >admin_clientAdd.jsp</result>
+         <result name="success" type="chain">admin_mains_districtInfo</result>
+            
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="admin_districtinfoadmin" class="myActions.districtAdmin" method="admin_districtinfoadmin">           
+            <result name="success">admin_districtinfoadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+                <action name="admin_districtinfoadminB" class="myActions.districtAdmin" method="admin_districtinfoadmin2">           
+            <result name="success">admin_districtinfoadminB.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+          <action name="admin_clientadmin" class="myActions.clientAdmin" method="admin_clientadmin">           
+            <result name="success">admin_clientadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+            <action name="admin_purchaseinfoadmin" class="myActions.districtAdmin" method="admin_purchaseinfoadmin">           
+            <result name="success">admin_purchaseinfoadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        
+            <action name="admin_queryadmin" class="myActions.districtAdmin" method="admin_queryadmin">           
+            <result name="success">admin_queryadmin.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+
+        
+        <action name="admin_purchaseInfoAdd" class="myActions.purchaseinfoAdmin" method="admin_purchaseInfoAdd">           
+            <result name="success">admin_purchaseInfoAdd.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        
+         <action name="medicineDetail" class="myActions.TopicAdmin" method="medicineDetail">           
+            <result name="success" >admin_medicineDetail.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>
+       
+        <action name="districtDetail" class="myActions.districtAdmin" method="districtDetail">           
+            <result name="success" >admin_districtDetail.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>
+       
+         <action name="iphoneDetail" class="myActions.districtAdmin" method="iphoneDetail">           
+            <result name="success" >iphoneDetail.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>
+       
+        
+        <action name="search" class="myActions.TopicAdmin" method="search">           
+            <result name="success" >admin_clientAddSearchMedicine.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>
+          
+          <action name="search4" class="myActions.TopicAdmin" method="search4">           
+            <result name="success" >admin_clientAddSearchMedicine2.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>   <!--  经销管理中对药品的搜索-->
+          
+        <action name="search2" class="myActions.TopicAdmin" method="search2">           
+            <result name="success" type="chain">admin_clientAdd</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>  
+            </action>
+            
+              <action name="search5" class="myActions.TopicAdmin" method="search5">           
+            <result name="success" >admin_districtAdd.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>  
+            </action>
+            
+             <action name="search3" class="myActions.TopicAdmin" method="search3">           
+            <result name="success" >iphoneDetail2.jsp</result>
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+          </action>
+            
+            <action name="admin_importD" class="myActions.TopicAdmin" method="admin_importD">           
+            <result name="success" >admin_medicineAdd.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action>
+            
+             <action name="admin_importD2" class="myActions.districtAdmin" method="admin_importD2">           
+            <result name="success" >admin_districtAdd.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action>
+            
+            
+              <action name="admin_clientAdd" class="myActions.TopicAdmin" method="admin_clientAdd">           
+            <result name="success" >admin_clientAdd.jsp</result>
+           <result name="input" >admin_clientAdd.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action>
+            
+              <action name="admin_clientAdd2" class="myActions.clientAdmin" method="admin_clientAdd2">           
+               <result>admin_clientAdd.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action>
+         
+       
+            <action name="client_medicineview" class="myActions.TopicAdmin" method="client_medicineview">           
+            <result name="success" >client_medicineview.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+         <action name="admin_client*" class="myActions.clientAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+        <action name="admin_medicine*" class="myActions.TopicAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+        <action name="client_medicine*" class="myActions.TopicAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+        
+        
+         <action name="client_district*" class="myActions.districtAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+        
+               <action name="admin_districtAdd" class="myActions.districtAdmin" method="admin_districtAdd" >
+            <result name="success">admin_medicineResearch.jsp</result>
+            <result name="input">admin_medicineResearch.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+        <action name="admin_manager*" class="myActions.districtAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>  
+        
+                <action name="admin_district*" class="myActions.districtAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>   
+<action name="aadmin_districtinfo*" class="myActions.districtinfoAdmin" method="{0}" >
+            <result>{0}.jsp</result>
+            <result name="input">{0}.jsp</result>
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>     
+        
+           <action name="admin_register" class="myActions.register" method="admin_register">           
+            <result name="success" >admin_register.jsp</result>
+           <result name="duplicate" >admin_register.jsp</result>
+     
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action> 
+           
+           
+                
+<action name="admin_outPut" class="myActions.writeExcel" method="admin_outPut" >
+            <result>admin_outPut.jsp</result>
+       
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+        <action name="admin_DayoutPut" class="myActions.writeExcel" method="admin_DayoutPut" >
+            <result>admin_DayoutPut.jsp</result>
+       
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action> 
+        <action name="admin_MonthoutPut" class="myActions.writeExcel" method="admin_MonthoutPut" >
+            <result>admin_MonthoutPut.jsp</result>
+       
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action> 
+        <action name="admin_YearoutPut" class="myActions.writeExcel" method="admin_YearoutPut" >
+            <result>admin_YearoutPut.jsp</result>
+       
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action> 
+        
+      
+        
+   <action name="admin_districtInfoAdd" class="myActions.districtinfoAdmin" method="admin_districtInfoAdd" >
+            <result>admin_districtInfoAdd.jsp</result>
+       
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>    
+        
+        
+        
+        
+        
+           <!-- workLog-->
+        <action name="admin_workLog" class="myActions.WorkLog" >
+            <result name="success" >admin_workLog.jsp</result>
+          
+            <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+        </action>
+        
+       <action name="passwordEditSave" class="myActions.passwordEdit" method="passwordEditSave">           
+            <result name="success" >admin_passwordEdit.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action> 
+            
+            <action name="admin_permission" class="myActions.adminLog" method="admin_permission">           
+            <result name="success" >admin_permission.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action> 
+            
+              <action name="admin_permissionEdit" class="myActions.adminLog" method="admin_permissionEdit">           
+            <result name="success" >admin_permissionEdit.jsp</result>
+           
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action> 
+            
+        
+            
+              <action name="admin_permissionEditSave" class="myActions.adminLog" method="admin_permissionEditSave">           
+            <result name="success" >admin_permission.jsp</result>
+            <result name="input">admin_permissionEdit.jsp</result>
+            
+             <interceptor-ref name="loginedInterceptor"/><!-- 调用自定义拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            
+            </action> 
+                  
+  
+
+  </package>  
+</struts>

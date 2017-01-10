@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Struts 2校验器配置文件DTD信息，必不可少 -->
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+                  "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<!-- 定义校验器 -->
+<validators>
+    <field name="title">
+        <field-validator type="requiredstring">
+            <message>新闻栏目名称不能为空，也不能使用空格</message>
+        </field-validator>
+    </field>
+</validators>
